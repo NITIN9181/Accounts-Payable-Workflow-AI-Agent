@@ -1,0 +1,50 @@
+"""Setup configuration for AP Workflow Agent."""
+
+from setuptools import setup, find_packages
+
+setup(
+    name="ap-workflow-agent",
+    version="0.1.0",
+    description="Accounts Payable Workflow Agent - Intelligent invoice processing system",
+    author="AP Team",
+    author_email="ap@example.com",
+    packages=find_packages(where="src"),
+    package_dir={"": "src"},
+    python_requires=">=3.11",
+    install_requires=[
+        "fastapi>=0.109.0",
+        "uvicorn>=0.27.0",
+        "sqlalchemy>=2.0.25",
+        "psycopg2-binary>=2.9.9",
+        "alembic>=1.13.1",
+        "pydantic>=2.5.3",
+        "pydantic-settings>=2.1.0",
+        "python-jose>=3.3.0",
+        "passlib>=1.7.4",
+        "python-multipart>=0.0.9",
+        "redis>=5.0.1",
+        "pytesseract>=0.3.10",
+        "requests>=2.31.0",
+        "rapidfuzz>=3.6.1",
+        "scikit-learn>=1.3.2",
+        "python-dotenv>=1.0.0",
+        "email-validator>=2.1.0",
+        "aiofiles>=23.2.1",
+        "httpx>=0.26.0",
+        "websockets>=12.0",
+        "cryptography>=41.0.7",
+        "boto3>=1.34.34",
+        "supabase>=2.3.0",
+        "tenacity>=8.2.3",
+    ],
+    extras_require={
+        "dev": [
+            "pytest>=7.4.4",
+            "pytest-asyncio>=0.23.3",
+            "pytest-cov>=4.1.0",
+            "hypothesis>=6.98.12",
+            "black>=23.12.1",
+            "ruff>=0.1.11",
+        ],
+    },
+)
