@@ -43,9 +43,13 @@ async def lifespan(app: FastAPI):
     # Startup
     print("Starting AP Workflow Agent...")
     
-    # Create all database tables
-    Base.metadata.create_all(bind=engine)
-    print("Database tables created/verified")
+    # Create all database tables with graceful error handling
+    try:
+        Base.metadata.create_all(bind=engine)
+        print("Database tables created/verified")
+    except Exception as e:
+        print(f"Warning: Database initialization failed: {e}")
+        print("Application will continue without database. Some features may be unavailable.")
     
     # Test Redis connection
     try:
