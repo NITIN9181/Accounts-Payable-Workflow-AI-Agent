@@ -81,6 +81,14 @@ build/
 *.log
 logs/
 
+# Deployment files (local testing)
+.docker/
+docker-compose.yml
+
+# Deployment guide (keep in repo)
+DEPLOYMENT_GUIDE.md
+
+# IDE
 .cursorrules
 .mcp.json
 .opencode.json
