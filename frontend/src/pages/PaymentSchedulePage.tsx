@@ -8,7 +8,6 @@ import {
   AlertTriangle, 
   CheckCircle, 
   Clock, 
-  ArrowRight, 
   TrendingUp 
 } from 'lucide-react'
 import { 

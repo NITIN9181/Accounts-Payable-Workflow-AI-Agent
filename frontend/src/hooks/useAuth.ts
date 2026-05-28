@@ -39,7 +39,7 @@ const isTokenExpired = (token: string): boolean => {
  */
 export const useAuthTokenManagement = () => {
   const { setUser } = useAuthContext()
-  const refreshTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const refreshTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   /**
    * Refresh JWT token from the server
