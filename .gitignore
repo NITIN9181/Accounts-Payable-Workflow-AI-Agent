@@ -1,0 +1,93 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.claude
+.cursor
+.gemini
+.github
+.qoder
+
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Kiro
+.kiro/settings/mcp.json
+.kiro
+Kiro_Prompt_AP_Workflow_Agent_Stitch.md
+# Added by code-review-graph
+.code-review-graph/
+
+# Hypothesis (property-based testing)
+.hypothesis/
+
+# Aider chat history
+.aider.chat.history.md
+.aider.input.history
+.aider.tags.cache.v4/
+
+# IDE settings
+.claude/settings.local.json
+
+# Database files
+*.db
+*.db-shm
+*.db-wal
+
+# Local environment files
+.env.local
+.env.*.local
+
+# Node modules (frontend)
+node_modules/
+
+# Build artifacts
+dist/
+build/
+
+# Logs
+*.log
+logs/
+
+.cursorrules
+.mcp.json
+.opencode.json
+.windsurfrules
+AGENTS.md
+CLAUDE.md
+GEMINI.md
+QODER.md
+.aider*
+.env
