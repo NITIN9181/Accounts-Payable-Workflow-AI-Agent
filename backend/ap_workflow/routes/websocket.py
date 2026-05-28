@@ -176,6 +176,11 @@ async def consume_and_broadcast():
     logger.info("Starting WebSocket broadcast queue consumer")
     loop = asyncio.get_running_loop()
 
+    # Check if Redis is available
+    if not queue_service.client:
+        logger.warning("Redis client not available. WebSocket broadcast consumer disabled.")
+        return
+
     while True:
         try:
             message = await loop.run_in_executor(

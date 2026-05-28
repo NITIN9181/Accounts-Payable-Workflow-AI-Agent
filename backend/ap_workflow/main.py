@@ -34,6 +34,8 @@ from ap_workflow.routes import settings as settings_router
 from ap_workflow.core.logging_config import setup_structured_logging
 
 
+#changes
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Lifespan context manager for startup and shutdown events."""
@@ -63,7 +65,12 @@ async def lifespan(app: FastAPI):
     
     # Start WebSocket background consumer task
     from ap_workflow.routes.websocket import consume_and_broadcast
-    broadcast_task = asyncio.create_task(consume_and_broadcast())
+    broadcast_task = None
+    if redis_client.client:
+        broadcast_task = asyncio.create_task(consume_and_broadcast())
+        print("WebSocket broadcast consumer started")
+    else:
+        print("Warning: WebSocket broadcast consumer disabled (Redis unavailable)")
 
     # Start Vendor Baseline Update background task
     from ap_workflow.services.vendor_baseline import VendorBaselineService
@@ -84,12 +91,14 @@ async def lifespan(app: FastAPI):
             await asyncio.sleep(6 * 3600)
 
     baseline_task = asyncio.create_task(baseline_update_scheduler())
+    print("Vendor baseline update scheduler started")
     
     yield
     
     # Shutdown
     print("Shutting down AP Workflow Agent...")
-    broadcast_task.cancel()
+    if broadcast_task:
+        broadcast_task.cancel()
     baseline_task.cancel()
     try:
         await asyncio.gather(broadcast_task, baseline_task, return_exceptions=True)

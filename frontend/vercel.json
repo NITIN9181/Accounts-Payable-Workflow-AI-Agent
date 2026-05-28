@@ -4,8 +4,8 @@
   "devCommand": "vite",
   "installCommand": "npm install",
   "framework": "vite",
-  "env": [
-    "VITE_API_URL",
-    "VITE_WS_URL"
-  ]
+  "env": {
+    "VITE_API_URL": "https://ap-workflow-backend.onrender.com",
+    "VITE_WS_URL": "wss://ap-workflow-backend.onrender.com"
+  }
 }
