@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import apiClient from '../lib/api'
 import Layout from '../components/Layout'
@@ -9,8 +9,7 @@ import {
   Clock, 
   AlertTriangle, 
   FileText, 
-  ArrowUpRight, 
-  ArrowDownRight 
+  ArrowUpRight 
 } from 'lucide-react'
 import { 
   LineChart, 
@@ -27,6 +26,7 @@ import {
 
 const VendorAnalyticsPage: React.FC = () => {
   const { vendor_key } = useParams<{ vendor_key: string }>()
+  const navigate = useNavigate()
 
   const { data: vendorData, isLoading } = useQuery({
     queryKey: ['vendor-analytics', vendor_key],

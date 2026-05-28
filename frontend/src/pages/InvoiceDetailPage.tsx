@@ -6,7 +6,6 @@ import Layout from '../components/Layout'
 import { 
   FileText, 
   CheckCircle, 
-  AlertCircle, 
   Clock, 
   History, 
   User, 
@@ -17,8 +16,6 @@ import {
 const InvoiceDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
-  const [action, setAction] = useState('APPROVED')
-  const [notes, setNotes] = useState('')
 
   const { data: invoice, isLoading } = useQuery({
     queryKey: ['invoice-detail', id],
