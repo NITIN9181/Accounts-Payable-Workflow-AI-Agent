@@ -53,8 +53,11 @@ async def lifespan(app: FastAPI):
     
     # Test Redis connection
     try:
-        redis_client.client.ping()
-        print("Redis connection established")
+        if redis_client.client:
+            redis_client.client.ping()
+            print("Redis connection established")
+        else:
+            print("Warning: Redis client not available")
     except Exception as e:
         print(f"Warning: Redis connection failed: {e}")
     

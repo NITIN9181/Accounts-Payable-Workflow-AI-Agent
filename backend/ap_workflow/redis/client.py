@@ -40,7 +40,16 @@ class RedisClient:
         if not self._redis_available:
             return None
         if self._client is None:
-            self._client = redis.Redis(connection_pool=self.pool)
+            try:
+                self._client = redis.Redis.from_url(
+                    self.url,
+                    connection_pool=self.pool,
+                    decode_responses=False
+                )
+            except Exception as e:
+                print(f"Warning: Failed to create Redis client: {e}")
+                print("Redis will be disabled. Some features may be unavailable.")
+                self._client = None
         return self._client
 
     def close(self):
