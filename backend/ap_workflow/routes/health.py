@@ -32,8 +32,9 @@ def health_check_database(db: Session = Depends(get_db)) -> dict:
         Dictionary with database status
     """
     try:
+        from sqlalchemy import text
         # Try a simple query
-        db.execute("SELECT 1")
+        db.execute(text("SELECT 1"))
         return {
             "status": "ok",
             "database": "connected",
