@@ -9,7 +9,7 @@ type WebSocketEventHandler = (event: WebSocketEvent) => void
  */
 export const useWebSocket = (onMessage: WebSocketEventHandler) => {
   const wsRef = useRef<WebSocket | null>(null)
-  const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const reconnectTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const reconnectAttemptsRef = useRef(0)
   const maxReconnectAttempts = 5
   const reconnectDelay = 3000
