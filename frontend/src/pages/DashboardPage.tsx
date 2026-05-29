@@ -75,13 +75,24 @@ const DashboardPage: React.FC = () => {
 
   // WebSocket for real-time exceptions
   useEffect(() => {
-    const ws = new WebSocket(`ws://${window.location.host}/ws/stream?token=${localStorage.getItem('ap_workflow_token')}`)
+    const enableWebSocket = import.meta.env.VITE_ENABLE_WEBSOCKET !== 'false'
+    if (!enableWebSocket) return
+
+    const token = localStorage.getItem('ap_workflow_token')
+    if (!token) return
+
+    const wsUrl = import.meta.env.VITE_WS_URL || 'wss://localhost:8000/ws'
+    const ws = new WebSocket(`${wsUrl}/stream?token=${token}`)
     
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data)
       if (data.type === 'EXCEPTION_CREATED') {
         setEvents(prev => [data.payload, ...prev].slice(0, 10))
       }
+    }
+
+    ws.onerror = (error) => {
+      console.error('WebSocket error:', error)
     }
 
     return () => ws.close()

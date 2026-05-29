@@ -135,7 +135,17 @@ def get_approval_queue(
             "offset": offset,
         }
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error retrieving approval queue: {str(e)}")
+        import traceback
+        print(f"Error retrieving approval queue: {e}")
+        traceback.print_exc()
+        # Return empty queue instead of 500 error
+        return {
+            "approvals": [],
+            "total_count": 0,
+            "limit": limit,
+            "offset": offset,
+            "error": str(e)
+        }
 
 
 @router.get("/{approval_id}", response_model=ApprovalResponse)

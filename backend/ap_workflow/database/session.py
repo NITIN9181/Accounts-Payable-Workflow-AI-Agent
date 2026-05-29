@@ -1,13 +1,13 @@
 """Database session management for AP Workflow Agent."""
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, event
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+import socket
 
 from ap_workflow.core.config import settings
 
 # Create engine with connection pooling
-# Force IPv4 by using socket options
 engine = create_engine(
     settings.database_url,
     pool_size=settings.database_pool_size,
