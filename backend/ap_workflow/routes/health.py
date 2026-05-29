@@ -18,8 +18,8 @@ def seed_demo_data_endpoint(db: Session = Depends(get_db)) -> dict:
         Dictionary with seeding status
     """
     try:
-        from seed_demo_data import seed_demo_data
-        seed_demo_data()
+        from seed_demo_data import seed
+        seed()
         return {
             "status": "ok",
             "message": "Demo data seeded successfully",
