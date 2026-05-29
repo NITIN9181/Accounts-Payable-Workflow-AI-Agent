@@ -43,7 +43,6 @@ class RedisClient:
             try:
                 self._client = redis.Redis.from_url(
                     self.url,
-                    connection_pool=self.pool,
                     decode_responses=False
                 )
             except Exception as e:
