@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import apiClient from '@/lib/api'
-import { InvoiceException } from '@/types'
+import apiClient from '../lib/api'
+import { InvoiceException } from '../types'
 
 /**
  * Fetch list of exceptions with optional filtering

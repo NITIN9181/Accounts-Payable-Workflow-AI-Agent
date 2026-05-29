@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback } from 'react'
-import { WebSocketEvent } from '@/types'
-import { getAuthToken } from '@/lib/api'
+import { WebSocketEvent } from '../types'
+import { getAuthToken } from '../lib/api'
 
 type WebSocketEventHandler = (event: WebSocketEvent) => void
 
