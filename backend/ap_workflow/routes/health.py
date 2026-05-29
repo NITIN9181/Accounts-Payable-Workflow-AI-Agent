@@ -10,6 +10,32 @@ from ap_workflow.services.health_monitoring import HealthMonitoringService, Metr
 router = APIRouter(prefix="/api/v1", tags=["health"])
 
 
+@router.get("/seed-demo-data")
+def seed_demo_data_endpoint(db: Session = Depends(get_db)) -> dict:
+    """Seed demo data into the database.
+    
+    Returns:
+        Dictionary with seeding status
+    """
+    try:
+        from seed_demo_data import seed_demo_data
+        seed_demo_data()
+        return {
+            "status": "ok",
+            "message": "Demo data seeded successfully",
+            "timestamp": datetime.utcnow().isoformat()
+        }
+    except Exception as e:
+        print(f"Error seeding demo data: {e}")
+        import traceback
+        traceback.print_exc()
+        return {
+            "status": "error",
+            "message": f"Failed to seed demo data: {str(e)}",
+            "timestamp": datetime.utcnow().isoformat()
+        }
+
+
 @router.get("/health")
 def health_check(db: Session = Depends(get_db)) -> dict:
     """Perform comprehensive health check.
