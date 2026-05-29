@@ -32,10 +32,21 @@ def health_check_database(db: Session = Depends(get_db)) -> dict:
         Dictionary with database status
     """
     try:
-        service = HealthMonitoringService(db)
-        return service.check_database_connectivity()
+        # Try a simple query
+        db.execute("SELECT 1")
+        return {
+            "status": "ok",
+            "database": "connected",
+            "timestamp": datetime.utcnow().isoformat()
+        }
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Database health check failed: {str(e)}")
+        print(f"Database connection error: {e}")
+        return {
+            "status": "error",
+            "database": "disconnected",
+            "error": str(e),
+            "timestamp": datetime.utcnow().isoformat()
+        }
 
 
 @router.get("/health/redis")
