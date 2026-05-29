@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import apiClient from '../lib/api'
-import { Approval } from '../types'
+import apiClient from '@/lib/api'
+import { Approval } from '@/types'
 
 /**
  * Fetch list of approvals with optional filtering

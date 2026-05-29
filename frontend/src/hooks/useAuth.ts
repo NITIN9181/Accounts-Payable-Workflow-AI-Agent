@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react'
-import { useAuth as useAuthContext } from '../context/AuthContext'
-import apiClient, { setAuthToken, clearAuthToken, getAuthToken } from '../lib/api'
+import { useAuth as useAuthContext } from '@/context/AuthContext'
+import apiClient, { setAuthToken, clearAuthToken, getAuthToken } from '@/lib/api'
 
 const TOKEN_REFRESH_INTERVAL = 5 * 60 * 1000 // 5 minutes
 const TOKEN_EXPIRY_BUFFER = 60 * 1000 // 1 minute before actual expiry

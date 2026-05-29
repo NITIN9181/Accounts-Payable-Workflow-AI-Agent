@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode, useCallback } from 'react'
-import apiClient, { getAuthToken, setAuthToken, clearAuthToken } from '../lib/api'
+import apiClient, { getAuthToken, setAuthToken, clearAuthToken } from '@/lib/api'
 
 interface User {
   id: string
